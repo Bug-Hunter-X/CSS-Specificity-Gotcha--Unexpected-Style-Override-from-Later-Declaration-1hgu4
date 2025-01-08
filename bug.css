@@ -1,0 +1,23 @@
+The following CSS code snippet demonstrates an uncommon issue where a seemingly correct selector fails to apply styles due to a subtle specificity conflict:
+
+```css
+.container {
+  width: 500px;
+}
+
+.container p {
+  color: blue; /* This rule is unexpectedly overridden */
+}
+
+.container p.special {
+  color: red; /* This is intended to override the blue color */
+}
+
+.special {
+  color: green;/* This rule unexpectedly overrides .container p.special */
+}
+```
+
+In this example, the `p.special` selector is intended to override the `color: blue` style set by `.container p`. However, the `.special` selector has the same specificity as `.container p.special`, and because it's declared later, it overrides the red color.  This highlights a case where the order of declarations is surprisingly crucial, even when specificity rules seem to correctly prioritize a rule.
+
+The bug arises from an oversight in understanding CSS specificity rules and the order of declarations influencing the precedence.
