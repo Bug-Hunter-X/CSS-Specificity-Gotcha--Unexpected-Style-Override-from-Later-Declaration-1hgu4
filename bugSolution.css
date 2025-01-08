@@ -1,0 +1,22 @@
+The solution involves adjusting the CSS to ensure that the intended style is applied with higher specificity.
+One approach is to use more specific selectors or to make the `.container p.special` selector more specific than the `.special` selector by adding another parent element in the selector, or using the `!important` flag, although this is generally discouraged:
+
+```css
+.container {
+  width: 500px;
+}
+
+.container p {
+  color: blue; 
+}
+
+.container p.special {
+  color: red; /* Now correctly overrides the blue color */
+}
+
+.special {
+  color: green;
+}
+```
+
+Another approach is to reorder the selectors such that the more specific selector is defined earlier in the stylesheet.  This is less desirable than increasing specificity as it's less maintainable and more fragile to changes but does demonstrate the role that declaration order plays in resolving specificity ties.
